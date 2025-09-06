@@ -43,14 +43,4 @@ export class Card {
             Rarity.fromFirestore(data.rarity)
         );
     }
-
-    toFirestore(): any {
-        return {
-            id: this.id,
-            name: this.name,
-            description: this.description,
-            set: this.set.toFirestore(),
-            rarity: this.rarity.toFirestore(),
-        };
-    }
 }
