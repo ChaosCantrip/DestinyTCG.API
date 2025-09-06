@@ -22,7 +22,7 @@ const eslintConfig = [
   },
   {
     rules: {
-      "brace-style": ["error", "allman"],
+      "brace-style": ["warn", "allman"],
     }
   }
 ];
