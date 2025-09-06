@@ -12,7 +12,7 @@ export class Set {
         this.name = name;
     }
 
-    // Set registry methods
+    // #region Set Collection Management
 
     register() {
         Set.sets.set(this.id, this);
@@ -25,6 +25,8 @@ export class Set {
         }
         return set;
     }
+
+    // #endregion
 
     // #region Firestore Serialization/Deserialization
 
