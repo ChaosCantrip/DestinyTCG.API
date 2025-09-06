@@ -3,7 +3,8 @@ import { Errors } from "@lib/models";
 import { CardFirestoreData } from "@lib/models/firestore";
 import { getAllCards } from "@/lib/firestore/destinytcg";
 
-export class Card {
+export class Card 
+{
     private static readonly _cards = new Map<string, Card>();
     private static _initialised = false;
 
@@ -13,7 +14,8 @@ export class Card {
     public readonly set: Set;
     public readonly rarity: Rarity;
 
-    constructor(id: string, name: string, description: string, set: Set, rarity: Rarity) {
+    constructor(id: string, name: string, description: string, set: Set, rarity: Rarity) 
+    {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -23,21 +25,26 @@ export class Card {
 
     // #region Card Collection Management
 
-    static async initialise() {
-        if (this._initialised) {
+    static async initialise() 
+    {
+        if (this._initialised) 
+        {
             console.log("Card collection is already initialised.");
             return;
         }
-        if (!Set.isInitialised()) {
+        if (!Set.isInitialised()) 
+        {
             throw new Errors.SetsNotInitialisedError();
         }
-        if (!Rarity.isInitialised()) {
+        if (!Rarity.isInitialised()) 
+        {
             throw new Errors.RaritiesNotInitialisedError();
         }
         console.log("Initialising Card collection...");
         this._cards.clear();
         const cardsData = await getAllCards();
-        cardsData.forEach(cardData => {
+        cardsData.forEach(cardData => 
+        {
             const card = Card.fromFirestore(cardData);
             card.register();
         });
@@ -45,20 +52,25 @@ export class Card {
         this._initialised = true;
     }
 
-    public static isInitialised(): boolean {
+    public static isInitialised(): boolean 
+    {
         return this._initialised;
     }
 
-    register() {
-        if (Card._cards.has(this.id)) {
+    register() 
+    {
+        if (Card._cards.has(this.id)) 
+        {
             throw new Errors.CardAlreadyRegisteredError(this.id);
         }
         Card._cards.set(this.id, this);
     }
 
-    static get(id: string): Card {
+    static get(id: string): Card 
+    {
         const card = Card._cards.get(id);
-        if (!card) {
+        if (!card) 
+        {
             throw new Errors.CardNotFoundError(id);
         }
         return card;
@@ -68,7 +80,8 @@ export class Card {
 
     // #region Firestore Serialization/Deserialization
 
-    static fromFirestore(data: CardFirestoreData): Card {
+    static fromFirestore(data: CardFirestoreData): Card 
+    {
         return new Card(
             data.id,
             data.name,
@@ -78,7 +91,8 @@ export class Card {
         );
     }
 
-    toFirestore(): CardFirestoreData {
+    toFirestore(): CardFirestoreData 
+    {
         return {
             id: this.id,
             name: this.name,

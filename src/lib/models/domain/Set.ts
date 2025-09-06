@@ -2,29 +2,34 @@ import { SetNotFoundError, SetAlreadyRegisteredError } from "@models/errors";
 import { SetFirestoreData } from "@models/firestore/SetFirestoreData";
 import { getAllSets } from "@/lib/firestore/destinytcg";
 
-export class Set {
+export class Set 
+{
     private static _sets = new Map<string, Set>();
     private static _initialised = false;
 
     id: string;
     name: string;
 
-    constructor(id: string, name: string) {
+    constructor(id: string, name: string) 
+    {
         this.id = id;
         this.name = name;
     }
 
     // #region Set Collection Management
 
-    static async initialise() {
-        if (this._initialised) {
+    static async initialise() 
+    {
+        if (this._initialised) 
+        {
             console.log("Set collection is already initialised.");
             return;
         }
         console.log("Initialising Set collection...");
         this._sets.clear();
         const setsData = await getAllSets();
-        setsData.forEach(setData => {
+        setsData.forEach(setData => 
+        {
             const set = Set.fromFirestore(setData);
             set.register();
         });
@@ -32,20 +37,25 @@ export class Set {
         this._initialised = true;
     }
 
-    public static isInitialised(): boolean {
+    public static isInitialised(): boolean 
+    {
         return this._initialised;
     }
 
-    register() {
-        if (Set._sets.has(this.id)) {
+    register() 
+    {
+        if (Set._sets.has(this.id)) 
+        {
             throw new SetAlreadyRegisteredError(this.id);
         }
         Set._sets.set(this.id, this);
     }
 
-    static get(id: string): Set {
+    static get(id: string): Set 
+    {
         const set = Set._sets.get(id);
-        if (!set) {
+        if (!set) 
+        {
             throw new SetNotFoundError(id);
         }
         return set;
@@ -55,11 +65,13 @@ export class Set {
 
     // #region Firestore Serialization/Deserialization
 
-    static fromFirestore(data: SetFirestoreData): Set {
+    static fromFirestore(data: SetFirestoreData): Set 
+    {
         return new Set(data.id, data.name);
     }
 
-    toFirestore(): SetFirestoreData {
+    toFirestore(): SetFirestoreData 
+    {
         return {
             id: this.id,
             name: this.name,

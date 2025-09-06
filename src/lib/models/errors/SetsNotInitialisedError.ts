@@ -1,8 +1,10 @@
-export class SetsNotInitialisedError extends Error {
+export class SetsNotInitialisedError extends Error 
+{
     name: string;
 
-    constructor() {
-        super(`Sets have not been initialised.`);
+    constructor() 
+    {
+        super("Sets have not been initialised.");
         this.name = "SetsNotInitialisedError";
     }
 }

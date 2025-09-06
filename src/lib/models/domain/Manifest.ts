@@ -1,14 +1,18 @@
 import { Card, Set, Rarity } from "@lib/models/domain";
 
-export class Manifest {
+export class Manifest 
+{
     private static _initialised = false;
 
-    public static isInitialised(): boolean {
+    public static isInitialised(): boolean 
+    {
         return this._initialised;
     }
 
-    public static async initialise() {
-        if (this._initialised) {
+    public static async initialise() 
+    {
+        if (this._initialised) 
+        {
             console.log("Manifest is already initialised.");
             return;
         }

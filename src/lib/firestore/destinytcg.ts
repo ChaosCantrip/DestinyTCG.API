@@ -2,7 +2,8 @@ import { RarityFirestoreData, SetFirestoreData, CardFirestoreData } from "@model
 import { collection, getDocs } from "firebase/firestore";
 import { Firestore } from "@lib/firestore";
 
-export async function getAllRarities(): Promise<RarityFirestoreData[]> {
+export async function getAllRarities(): Promise<RarityFirestoreData[]> 
+{
     console.log("Getting all rarities from Firestore...");
     const raritiesCollection = collection(Firestore.db, "rarities");
     const snapshot = await getDocs(raritiesCollection);
@@ -11,7 +12,8 @@ export async function getAllRarities(): Promise<RarityFirestoreData[]> {
     return rarities;
 }
 
-export async function getAllSets(): Promise<SetFirestoreData[]> {
+export async function getAllSets(): Promise<SetFirestoreData[]> 
+{
     console.log("Getting all sets from Firestore...");
     const setsCollection = collection(Firestore.db, "sets");
     const snapshot = await getDocs(setsCollection);
@@ -20,7 +22,8 @@ export async function getAllSets(): Promise<SetFirestoreData[]> {
     return sets;
 }
 
-export async function getAllCards(): Promise<CardFirestoreData[]> {
+export async function getAllCards(): Promise<CardFirestoreData[]> 
+{
     console.log("Getting all cards from Firestore...");
     const cardsCollection = collection(Firestore.db, "cards");
     const snapshot = await getDocs(cardsCollection);
