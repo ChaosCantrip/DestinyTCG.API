@@ -1,2 +1,2 @@
-export * from "./firestore";
-export * from "./destinytcg";
+export * as Firestore from "./firestore";
+export * as DestinyTCG from "./destinytcg";
