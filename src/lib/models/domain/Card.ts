@@ -50,6 +50,9 @@ export class Card {
     }
 
     register() {
+        if (Card._cards.has(this.id)) {
+            throw new Errors.CardAlreadyRegisteredError(this.id);
+        }
         Card._cards.set(this.id, this);
     }
 
