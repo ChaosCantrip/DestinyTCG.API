@@ -40,7 +40,7 @@ export class Card {
             data.name,
             data.description,
             Set.get(data.set),
-            Rarity.fromFirestore(data.rarity)
+            Rarity.get(data.rarity)
         );
     }
 }

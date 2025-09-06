@@ -1,8 +1,7 @@
+import { RarityNotFoundError } from "../errors";
+
 export class Rarity {
-    static readonly COMMON = new Rarity('Common');
-    static readonly UNCOMMON = new Rarity('Uncommon');
-    static readonly RARE = new Rarity('Rare');
-    static readonly LEGENDARY = new Rarity('Legendary');
+    static rarities = new Map<string, Rarity>();
 
     name: string;
 
@@ -10,26 +9,15 @@ export class Rarity {
         this.name = name;
     }
 
-    toString() {
-        return this.name;
+    static get(name: string): Rarity {
+        const rarity = Rarity.rarities.get(name);
+        if (!rarity) {
+            throw new RarityNotFoundError(name);
+        }
+        return rarity;
     }
 
     static fromFirestore(value: string): Rarity {
-        switch (value) {
-            case 'Common':
-                return Rarity.COMMON;
-            case 'Uncommon':
-                return Rarity.UNCOMMON;
-            case 'Rare':
-                return Rarity.RARE;
-            case 'Legendary':
-                return Rarity.LEGENDARY;
-            default:
-                throw new Error(`Unknown rarity: ${value}`);
-        }
-    }
-
-    toFirestore(): string {
-        return this.name;
+        return Rarity.get(value);
     }
 }
