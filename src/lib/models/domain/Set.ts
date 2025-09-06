@@ -1,5 +1,6 @@
 import { SetNotFoundError } from "@models/errors/SetNotFoundError";
 import { SetFirestoreData } from "@models/firestore/SetFirestoreData";
+import { getAllSets } from "@/lib/firestore/destinytcg";
 
 export class Set {
     static sets = new Map<string, Set>();
@@ -13,6 +14,17 @@ export class Set {
     }
 
     // #region Set Collection Management
+
+    static async initialise() {
+        console.log("Initialising Set collection...");
+        this.sets.clear();
+        const setsData = await getAllSets();
+        setsData.forEach(setData => {
+            const set = Set.fromFirestore(setData);
+            set.register();
+        });
+        console.log(`Initialised Set collection with ${this.sets.size} sets.`);
+    }
 
     register() {
         Set.sets.set(this.id, this);
