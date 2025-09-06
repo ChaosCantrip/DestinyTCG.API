@@ -19,7 +19,7 @@ export class Card {
         this.rarity = rarity;
     }
 
-    // Card registry methods
+    // #region Card Collection Management
 
     register() {
         Card._cards.set(this.id, this);
@@ -33,7 +33,9 @@ export class Card {
         return card;
     }
 
-    // Firestore serialization/deserialization
+    // #endregion
+
+    // #region Firestore Serialization/Deserialization
 
     static fromFirestore(data: CardFirestoreData): Card {
         return new Card(
@@ -54,4 +56,6 @@ export class Card {
             rarity: this.rarity.name,
         };
     }
+
+    // #endregion
 }
