@@ -10,3 +10,4 @@ export * from "./SetAlreadyRegisteredError";
 export * from "./RarityAlreadyRegisteredError";
 
 export * from "./IncompleteResponseError";
+export * from "./IncompleteRequestError";
