@@ -1,5 +1,5 @@
 import { Set, Rarity } from "@lib/models/domain";
-import { CardNotFoundError, SetsNotInitialisedError } from "@lib/models/errors";
+import { CardNotFoundError, SetsNotInitialisedError, RaritiesNotInitialisedError } from "@lib/models/errors";
 import { CardFirestoreData } from "@lib/models/firestore";
 import { getAllCards } from "@/lib/firestore/destinytcg";
 
@@ -30,6 +30,9 @@ export class Card {
         }
         if (!Set.isInitialised()) {
             throw new SetsNotInitialisedError();
+        }
+        if (!Rarity.isInitialised()) {
+            throw new RaritiesNotInitialisedError();
         }
         console.log("Initialising Card collection...");
         this._cards.clear();
