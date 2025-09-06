@@ -4,6 +4,7 @@ import { getAllRarities } from "@/lib/firestore/destinytcg";
 
 export class Rarity {
     private static readonly _rarities = new Map<string, Rarity>();
+    private static initialised = false;
 
     public readonly name: string;
 
@@ -14,6 +15,10 @@ export class Rarity {
     // #region Collection Management
 
     static async initialise() {
+        if (this.initialised) {
+            console.log("Rarity collection is already initialised.");
+            return;
+        }
         console.log("Initialising Rarity collection...");
         this._rarities.clear();
         const raritiesData = await getAllRarities();
@@ -22,6 +27,7 @@ export class Rarity {
             rarity.register();
         });
         console.log(`Initialised Rarity collection with ${this._rarities.size} rarities.`);
+        this.initialised = true;
     }
 
     register() {
