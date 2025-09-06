@@ -1,6 +1,7 @@
 import { Set, Rarity } from "@lib/models/domain";
 import { CardNotFoundError } from "@lib/models/errors";
 import { CardFirestoreData } from "@lib/models/firestore";
+import { getAllCards } from "@/lib/firestore/destinytcg";
 
 export class Card {
     private static readonly _cards = new Map<string, Card>();
@@ -20,6 +21,17 @@ export class Card {
     }
 
     // #region Card Collection Management
+
+    static async initialise() {
+        console.log("Initialising Card collection...");
+        this._cards.clear();
+        const cardsData = await getAllCards();
+        cardsData.forEach(cardData => {
+            const card = Card.fromFirestore(cardData);
+            card.register();
+        });
+        console.log(`Initialised Card collection with ${this._cards.size} cards.`);
+    }
 
     register() {
         Card._cards.set(this.id, this);
