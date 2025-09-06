@@ -1,2 +1,2 @@
-export * from "./domain";
-export * from "./events";
+export * as Domain from "./domain";
+export * as Events from "./events";
