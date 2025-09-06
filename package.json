@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack --port 3002",
     "build": "next build --turbopack",
     "start": "next start --port 3002",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "firebase": "^12.2.1",
