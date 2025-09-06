@@ -1,21 +1,11 @@
 import { NextResponse } from "next/server";
+import { APIResponse } from "@/lib/models/responses";
 
-export async function GET() 
+export async function GET(): Promise<NextResponse>
 {
-    const startTime = Date.now();
+    const startTime = new Date();
+    const response = new APIResponse(startTime);
     
-    return NextResponse.json(
-        {
-            success: "success",
-            message: "pong",
-            data: null,
-            meta: {
-                timestamp: new Date().toISOString(),
-                processingTime: `${Date.now() - startTime}ms`,
-            }
-        },
-        {
-            status: 200
-        }
-    );
+    response.message = "Pong!";
+    return response.success(200);
 }
