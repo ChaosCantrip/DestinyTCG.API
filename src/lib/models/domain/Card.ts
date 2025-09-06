@@ -25,7 +25,7 @@ export class Card {
         Card._cards.set(this.id, this);
     }
 
-    static get(id: string): Card | undefined {
+    static get(id: string): Card {
         const card = Card._cards.get(id);
         if (!card) {
             throw new CardNotFoundError(id);
