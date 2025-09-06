@@ -2,9 +2,9 @@ import { RarityNotFoundError } from "@models/errors";
 import { RarityFirestoreData } from "@models/firestore";
 
 export class Rarity {
-    static rarities = new Map<string, Rarity>();
+    private static readonly _rarities = new Map<string, Rarity>();
 
-    name: string;
+    public readonly name: string;
 
     private constructor(name: string) {
         this.name = name;
@@ -13,11 +13,11 @@ export class Rarity {
     // #region Collection Management
 
     register() {
-        Rarity.rarities.set(this.name, this);
+        Rarity._rarities.set(this.name, this);
     }
 
     static get(name: string): Rarity {
-        const rarity = Rarity.rarities.get(name);
+        const rarity = Rarity._rarities.get(name);
         if (!rarity) {
             throw new RarityNotFoundError(name);
         }
