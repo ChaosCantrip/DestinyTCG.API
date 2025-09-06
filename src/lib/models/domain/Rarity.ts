@@ -1,5 +1,6 @@
 import { RarityNotFoundError } from "@models/errors";
 import { RarityFirestoreData } from "@models/firestore";
+import { getAllRarities } from "@/lib/firestore/destinytcg";
 
 export class Rarity {
     private static readonly _rarities = new Map<string, Rarity>();
@@ -11,6 +12,17 @@ export class Rarity {
     }
 
     // #region Collection Management
+
+    static async initialise() {
+        console.log("Initialising Rarity collection...");
+        this._rarities.clear();
+        const raritiesData = await getAllRarities();
+        raritiesData.forEach(rarityData => {
+            const rarity = new Rarity(rarityData.name);
+            rarity.register();
+        });
+        console.log(`Initialised Rarity collection with ${this._rarities.size} rarities.`);
+    }
 
     register() {
         Rarity._rarities.set(this.name, this);
