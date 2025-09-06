@@ -4,6 +4,7 @@ import { getAllSets } from "@/lib/firestore/destinytcg";
 
 export class Set {
     static sets = new Map<string, Set>();
+    private static initialised = false;
 
     id: string;
     name: string;
@@ -16,6 +17,10 @@ export class Set {
     // #region Set Collection Management
 
     static async initialise() {
+        if (this.initialised) {
+            console.log("Set collection is already initialised.");
+            return;
+        }
         console.log("Initialising Set collection...");
         this.sets.clear();
         const setsData = await getAllSets();
