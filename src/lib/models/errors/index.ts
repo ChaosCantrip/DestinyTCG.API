@@ -6,3 +6,4 @@ export * from "./SetsNotInitialisedError";
 export * from "./RaritiesNotInitialisedError";
 
 export * from "./CardAlreadyRegisteredError";
+export * from "./SetAlreadyRegisteredError";
