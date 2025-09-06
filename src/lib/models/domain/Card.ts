@@ -3,7 +3,7 @@ import { CardNotFoundError } from "@lib/models/errors";
 import { CardFirestoreData } from "@lib/models/firestore";
 
 export class Card {
-    public static readonly Cards = new Map<string, Card>();
+    private static readonly _cards = new Map<string, Card>();
 
     public readonly id: string;
     public readonly name: string;
@@ -22,11 +22,11 @@ export class Card {
     // Card registry methods
 
     register() {
-        Card.Cards.set(this.id, this);
+        Card._cards.set(this.id, this);
     }
 
     static get(id: string): Card | undefined {
-        const card = Card.Cards.get(id);
+        const card = Card._cards.get(id);
         if (!card) {
             throw new CardNotFoundError(id);
         }
