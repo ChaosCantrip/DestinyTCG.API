@@ -11,7 +11,7 @@ interface Meta {
 interface APIResponseData<T> {
     success: success;
     message: string;
-    data: T | null;
+    payload: T | null;
     meta: Meta;
 }
 
@@ -19,7 +19,7 @@ export class APIResponse<T>
 {
     private _success: boolean | null = null;
     message: string | null = null;
-    data: T | null = null;
+    payload: T | null = null;
     startTime: Date;
 
     constructor(startTime: Date)
@@ -44,7 +44,7 @@ export class APIResponse<T>
         return {
             success: this._success ? "success" : "error",
             message: this.message,
-            data: this.data,
+            payload: this.payload,
             meta: {
                 timestamp: endTime.toISOString(),
                 processingTime
