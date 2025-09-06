@@ -1,5 +1,6 @@
 import { Set, Rarity } from "@lib/models/domain";
 import { CardNotFoundError } from "@lib/models/errors";
+import { CardFirestoreData } from "@lib/models/firestore";
 
 export class Card {
     public static readonly Cards = new Map<string, Card>();
@@ -34,13 +35,23 @@ export class Card {
 
     // Firestore serialization/deserialization
 
-    static fromFirestore(data: any): Card {
+    static fromFirestore(data: CardFirestoreData): Card {
         return new Card(
             data.id,
             data.name,
             data.description,
-            Set.get(data.set),
+            Set.get(data.setId),
             Rarity.get(data.rarity)
         );
+    }
+
+    toFirestore(): CardFirestoreData {
+        return {
+            id: this.id,
+            name: this.name,
+            description: this.description,
+            setId: this.set.id,
+            rarity: this.rarity.name,
+        };
     }
 }
