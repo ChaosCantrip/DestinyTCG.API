@@ -18,9 +18,9 @@ export class Manifest
         }
         console.log("Initialising manifest...");
 
-        await Card.initialise();
         await Set.initialise();
         await Rarity.initialise();
+        await Card.initialise();
 
         console.log("Manifest initialised.");
         this._initialised = true;
