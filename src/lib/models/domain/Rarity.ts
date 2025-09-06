@@ -10,6 +10,12 @@ export class Rarity {
         this.name = name;
     }
 
+    // #region Collection Management
+
+    register() {
+        Rarity.rarities.set(this.name, this);
+    }
+
     static get(name: string): Rarity {
         const rarity = Rarity.rarities.get(name);
         if (!rarity) {
@@ -17,6 +23,8 @@ export class Rarity {
         }
         return rarity;
     }
+
+    // #endregion
 
     // #region Firestore Serialization/Deserialization
 
