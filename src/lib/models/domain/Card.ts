@@ -2,13 +2,13 @@ import { Set, Rarity } from "@lib/models/domain";
 import { CardNotFoundError } from "@lib/models/errors";
 
 export class Card {
-    static cards = new Map<string, Card>();
+    public static readonly Cards = new Map<string, Card>();
 
-    id: string;
-    name: string;
-    description: string;
-    set: Set;
-    rarity: Rarity;
+    public readonly id: string;
+    public readonly name: string;
+    public readonly description: string;
+    public readonly set: Set;
+    public readonly rarity: Rarity;
 
     constructor(id: string, name: string, description: string, set: Set, rarity: Rarity) {
         this.id = id;
@@ -21,11 +21,11 @@ export class Card {
     // Card registry methods
 
     register() {
-        Card.cards.set(this.id, this);
+        Card.Cards.set(this.id, this);
     }
 
     static get(id: string): Card | undefined {
-        const card = Card.cards.get(id);
+        const card = Card.Cards.get(id);
         if (!card) {
             throw new CardNotFoundError(id);
         }
