@@ -1,4 +1,5 @@
 import { SetNotFoundError } from "@models/errors/SetNotFoundError";
+import { SetFirestoreData } from "@models/firestore/SetFirestoreData";
 
 export class Set {
     static sets = new Map<string, Set>();
@@ -25,16 +26,18 @@ export class Set {
         return set;
     }
 
-    // Firestore serialization/deserialization
+    // #region Firestore Serialization/Deserialization
 
-    static fromFirestore(data: any): Set {
+    static fromFirestore(data: SetFirestoreData): Set {
         return new Set(data.id, data.name);
     }
 
-    toFirestore(): any {
+    toFirestore(): SetFirestoreData {
         return {
             id: this.id,
             name: this.name,
         };
     }
+
+    // #endregion
 }
