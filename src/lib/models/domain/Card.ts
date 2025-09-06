@@ -5,6 +5,7 @@ import { getAllCards } from "@/lib/firestore/destinytcg";
 
 export class Card {
     private static readonly _cards = new Map<string, Card>();
+    private static _initialised = false;
 
     public readonly id: string;
     public readonly name: string;
@@ -23,6 +24,10 @@ export class Card {
     // #region Card Collection Management
 
     static async initialise() {
+        if (this._initialised) {
+            console.log("Card collection is already initialised.");
+            return;
+        }
         console.log("Initialising Card collection...");
         this._cards.clear();
         const cardsData = await getAllCards();
@@ -31,6 +36,11 @@ export class Card {
             card.register();
         });
         console.log(`Initialised Card collection with ${this._cards.size} cards.`);
+        this._initialised = true;
+    }
+
+    public static isInitialised(): boolean {
+        return this._initialised;
     }
 
     register() {
