@@ -7,3 +7,4 @@ export * from "./RaritiesNotInitialisedError";
 
 export * from "./CardAlreadyRegisteredError";
 export * from "./SetAlreadyRegisteredError";
+export * from "./RarityAlreadyRegisteredError";
