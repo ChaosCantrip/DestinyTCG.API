@@ -1,6 +1,9 @@
-import { Rarity, Set } from "@models/domain";
+import { Set, Rarity } from "@lib/models/domain";
+import { CardNotFoundError } from "@lib/models/errors";
 
 export class Card {
+    static cards = new Map<string, Card>();
+
     id: string;
     name: string;
     description: string;
@@ -14,6 +17,22 @@ export class Card {
         this.set = set;
         this.rarity = rarity;
     }
+
+    // Card registry methods
+
+    register() {
+        Card.cards.set(this.id, this);
+    }
+
+    static get(id: string): Card | undefined {
+        const card = Card.cards.get(id);
+        if (!card) {
+            throw new CardNotFoundError(id);
+        }
+        return card;
+    }
+
+    // Firestore serialization/deserialization
 
     static fromFirestore(data: any): Card {
         return new Card(
