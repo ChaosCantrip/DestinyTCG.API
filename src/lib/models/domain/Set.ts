@@ -29,6 +29,7 @@ export class Set {
             set.register();
         });
         console.log(`Initialised Set collection with ${this._sets.size} sets.`);
+        this.initialised = true;
     }
 
     register() {
