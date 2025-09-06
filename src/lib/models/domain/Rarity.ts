@@ -1,4 +1,5 @@
-import { RarityNotFoundError } from "../errors";
+import { RarityNotFoundError } from "@models/errors";
+import { RarityFirestoreData } from "@models/firestore";
 
 export class Rarity {
     static rarities = new Map<string, Rarity>();
@@ -17,7 +18,17 @@ export class Rarity {
         return rarity;
     }
 
-    static fromFirestore(value: string): Rarity {
-        return Rarity.get(value);
+    // #region Firestore Serialization/Deserialization
+
+    static fromFirestore(data: RarityFirestoreData): Rarity {
+        return Rarity.get(data.name);
     }
+
+    toFirestore(): RarityFirestoreData {
+        return {
+            name: this.name,
+        };
+    }
+
+    // #endregion
 }
