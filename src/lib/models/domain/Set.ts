@@ -1,4 +1,4 @@
-import { SetNotFoundError } from "@models/errors/SetNotFoundError";
+import { SetNotFoundError, SetAlreadyRegisteredError } from "@models/errors";
 import { SetFirestoreData } from "@models/firestore/SetFirestoreData";
 import { getAllSets } from "@/lib/firestore/destinytcg";
 
@@ -37,6 +37,9 @@ export class Set {
     }
 
     register() {
+        if (Set._sets.has(this.id)) {
+            throw new SetAlreadyRegisteredError(this.id);
+        }
         Set._sets.set(this.id, this);
     }
 
