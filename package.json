@@ -1,0 +1,15 @@
+{
+  "name": "destinytcg-api",
+  "version": "0.0.0",
+  "description": "",
+  "author": "ChaosCantrip <dev@chaoscantrip.com> (https://chaoscantrip.com/)",
+  "homepage": "https://github.com/ChaosCantrip/DestinyTCG.API",
+  "bugs": {
+    "url": "https://github.com/ChaosCantrip/DestinyTCG.API/issues",
+    "email": "dev@chaoscantrip.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ChaosCantrip/DestinyTCG.API.git"
+  }
+}
