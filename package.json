@@ -1,35 +1,30 @@
 {
   "name": "destinytcg-api",
   "version": "0.0.0",
-  "private": true,
+  "description": "",
   "scripts": {
-    "dev": "next dev --turbopack --port 3002",
-    "build": "next build --turbopack",
-    "start": "next start --port 3002",
+    "build": "tsc",
+    "start": "node dist/app/index.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "firebase": "^12.2.1",
-    "next": "15.5.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "express": "^5.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.2",
-    "typescript": "^5"
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "globals": "^16.3.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.42.0",
+    "@types/express": "^5.0.3"
   },
+  "author": "ChaosCantrip <dev@chaoscantrip.com> (https://chaoscantrip.com/)",
   "homepage": "https://github.com/ChaosCantrip/DestinyTCG.API",
   "bugs": {
     "url": "https://github.com/ChaosCantrip/DestinyTCG.API/issues",
     "email": "dev@chaoscantrip.com"
   },
-  "author": "ChaosCantrip <dev@chaoscantrip.com> (https://chaoscantrip.com/)",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/ChaosCantrip/DestinyTCG.API.git"

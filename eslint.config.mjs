@@ -1,30 +1,24 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import js from "@eslint/js";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import { defineConfig } from "eslint/config";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+export default defineConfig([
+  tseslint.configs.recommended,
   {
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-    ]
-  },
-  {
-    files: ["**/*.{js,ts,jsx,tsx,cjs,cts}"],
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+    plugins: {
+      js
+    },
+    extends: ["js/recommended"],
+    languageOptions: {
+      globals: globals.node
+    },
     rules: {
       "brace-style": ["warn", "allman"],
       "quotes": ["warn", "double"],
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
       "indent": ["warn", 4]
     }
   },
@@ -34,6 +28,4 @@ const eslintConfig = [
       "indent": ["warn", 2]
     }
   }
-];
-
-export default eslintConfig;
+]);
