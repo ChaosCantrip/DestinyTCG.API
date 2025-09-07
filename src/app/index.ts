@@ -1,12 +1,10 @@
 import express from "express";
+import endpointsRouter from "./endpoints";
 
 const app = express();
 const port = process.env.PORT || 3002;
 
-app.get("/", (req, res) => 
-{
-    res.send("Hello World!");
-});
+app.use("/api", endpointsRouter);
 
 app.listen(port, () => 
 {
