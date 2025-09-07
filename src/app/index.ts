@@ -1,6 +1,5 @@
 import express from "express";
 import endpointsRouter from "./endpoints";
-import "dotenv/config";
 import { Manifest } from "../lib/models/domain";
 
 const app = express();
@@ -16,6 +15,8 @@ async function initialiseApp()
 async function main() 
 {
     console.log("===== Starting API server... =====");
+
+    app.use(express.json());
     app.use("/api", endpointsRouter);
 
     app.listen(port, () => 
