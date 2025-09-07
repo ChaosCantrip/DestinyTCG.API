@@ -1,4 +1,4 @@
-import { Card, Set, Rarity } from "@lib/models/domain";
+import { Card, Set, Rarity } from ".";
 
 export class Manifest 
 {

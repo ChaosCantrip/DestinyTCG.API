@@ -1,7 +1,7 @@
-import { Set, Rarity } from "@lib/models/domain";
-import { Errors } from "@lib/models";
-import { CardFirestoreData } from "@lib/models/firestore";
-import { getAllCards } from "@/lib/firestore/destinytcg";
+import { Set, Rarity } from ".";
+import { Errors } from "..";
+import { CardFirestoreData } from "../firestore";
+import { getAllCards } from "../../firestore/destinytcg";
 
 export class Card 
 {

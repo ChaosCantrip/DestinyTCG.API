@@ -1,6 +1,6 @@
-import { SetNotFoundError, SetAlreadyRegisteredError } from "@models/errors";
-import { SetFirestoreData } from "@models/firestore/SetFirestoreData";
-import { getAllSets } from "@/lib/firestore/destinytcg";
+import { SetNotFoundError, SetAlreadyRegisteredError } from "../errors";
+import { SetFirestoreData } from "../firestore";
+import { getAllSets } from "../../firestore/destinytcg";
 
 export class Set 
 {

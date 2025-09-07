@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { IncompleteResponseError } from "@models/errors";
+import { IncompleteResponseError } from "../errors";
 
 type success = "success" | "error";
 
@@ -50,17 +49,5 @@ export class APIResponse<T>
                 processingTime
             }
         };
-    }
-
-    public success(status: number): NextResponse
-    {
-        this._success = true;
-        return NextResponse.json(this.toJSON(), { status });
-    }
-
-    public error(status: number): NextResponse
-    {
-        this._success = false;
-        return NextResponse.json(this.toJSON(), { status });
     }
 }

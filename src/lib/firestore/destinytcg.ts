@@ -1,6 +1,6 @@
-import { RarityFirestoreData, SetFirestoreData, CardFirestoreData } from "@models/firestore";
+import { RarityFirestoreData, SetFirestoreData, CardFirestoreData } from "../models/firestore";
 import { collection, getDocs } from "firebase/firestore";
-import { Firestore } from "@lib/firestore";
+import { Firestore } from "../firestore";
 
 export async function getAllRarities(): Promise<RarityFirestoreData[]> 
 {

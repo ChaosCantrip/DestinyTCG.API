@@ -1,6 +1,6 @@
-import { RarityNotFoundError, RarityAlreadyRegisteredError } from "@models/errors";
-import { RarityFirestoreData } from "@models/firestore";
-import { getAllRarities } from "@/lib/firestore/destinytcg";
+import { RarityNotFoundError, RarityAlreadyRegisteredError } from "../errors";
+import { RarityFirestoreData } from "../firestore";
+import { getAllRarities } from "../../firestore/destinytcg";
 
 export class Rarity 
 {
