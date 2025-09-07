@@ -2,6 +2,13 @@
   "name": "destinytcg-api",
   "version": "0.0.0",
   "description": "",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  },
   "author": "ChaosCantrip <dev@chaoscantrip.com> (https://chaoscantrip.com/)",
   "homepage": "https://github.com/ChaosCantrip/DestinyTCG.API",
   "bugs": {
