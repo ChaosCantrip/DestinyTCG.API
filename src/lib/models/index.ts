@@ -3,3 +3,4 @@ export * as Events from "./events";
 export * as Errors from "./errors";
 export * as Firestore from "./firestore";
 export * as Responses from "./responses";
+export * as Config from "./config";
