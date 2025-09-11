@@ -20,6 +20,7 @@ async function main()
 
     app.use(express.json());
     app.use(Middleware.LogRequest);
+    app.use(Middleware.LogResponse);
     app.use("/api", endpointsRouter);
 
     app.listen(port, () => 
