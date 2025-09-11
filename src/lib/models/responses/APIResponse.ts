@@ -1,4 +1,4 @@
-import { IncompleteResponseError } from "../errors";
+import { IncompleteResponseError } from "../../errors";
 
 type success = "success" | "error";
 

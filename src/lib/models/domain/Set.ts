@@ -1,4 +1,4 @@
-import { SetNotFoundError, SetAlreadyRegisteredError } from "../errors";
+import { SetNotFoundError, SetAlreadyRegisteredError } from "../../errors";
 import { SetFirestoreData } from "../firestore";
 import { getAllSets } from "../../firestore/destinytcg";
 import { Logger, LogLevel } from "../../utils";

@@ -1,5 +1,5 @@
 import { Set, Rarity } from ".";
-import { Errors } from "..";
+import { Errors } from "../..";
 import { CardFirestoreData } from "../firestore";
 import { getAllCards } from "../../firestore/destinytcg";
 import { Logger, LogLevel } from "../../utils";

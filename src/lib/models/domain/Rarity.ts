@@ -1,4 +1,4 @@
-import { RarityNotFoundError, RarityAlreadyRegisteredError } from "../errors";
+import { RarityNotFoundError, RarityAlreadyRegisteredError } from "../../errors";
 import { RarityFirestoreData } from "../firestore";
 import { getAllRarities } from "../../firestore/destinytcg";
 import { Logger, LogLevel } from "../../utils";
