@@ -20,7 +20,7 @@ const middlewares: MiddlewareConfig[] = [
 ];
 
 const routers: RouterConfig[] = [
-    new RouterConfig("/api", endpointsRouter, "endpointsRouter")
+    new RouterConfig("/", endpointsRouter, "endpointsRouter")
 ];
 
 async function initialiseApp()
