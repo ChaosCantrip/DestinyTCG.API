@@ -1,28 +1,28 @@
 import express from "express";
 import endpointsRouter from "./endpoints";
 import { Manifest } from "../lib/models/domain";
-import chalk from "chalk";
+import { Logger } from "../lib/utils/Logger";
 
 const app = express();
 const port = process.env.PORT || 3002;
 
 async function initialiseApp()
 {
-    console.log(chalk.yellow("\n===== Initialising application... ====="));
+    Logger.startSection("Initialising Application");
     await Manifest.initialise();
-    console.log(chalk.green("===== Application initialised. ====="));
+    Logger.endSection("Application Initialised");
 }
 
 async function main() 
 {
-    console.log(chalk.yellow("\n===== Starting API server... ====="));
+    Logger.startSection("Starting API Server");
 
     app.use(express.json());
     app.use("/api", endpointsRouter);
 
     app.listen(port, () => 
     {
-        console.log(chalk.green(`API is running at http://localhost:${port}`));
+        Logger.greenBright(`API Server is running at http://localhost:${port}/api`);
     });
 }
 

@@ -1,6 +1,7 @@
 import { SetNotFoundError, SetAlreadyRegisteredError } from "../errors";
 import { SetFirestoreData } from "../firestore";
 import { getAllSets } from "../../firestore/destinytcg";
+import { Logger, LogLevel } from "../../utils";
 
 export class Set 
 {
@@ -22,10 +23,12 @@ export class Set
     {
         if (this._initialised) 
         {
-            console.log("Set collection is already initialised.");
+            Logger.yellow("Set collection is already initialised.", LogLevel.WARN);
             return;
         }
-        console.log("Initialising Set collection...");
+
+        Logger.startSection("Initialising Set Collection");
+
         this._sets.clear();
         const setsData = await getAllSets();
         setsData.forEach(setData => 
@@ -33,8 +36,9 @@ export class Set
             const set = Set.fromFirestore(setData);
             set.register();
         });
-        console.log(`Initialised Set collection with ${this._sets.size} sets.`);
         this._initialised = true;
+
+        Logger.endSection("Set Collection Initialised");
     }
 
     public static isInitialised(): boolean 

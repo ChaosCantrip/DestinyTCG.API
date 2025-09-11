@@ -2,6 +2,7 @@ import { Set, Rarity } from ".";
 import { Errors } from "..";
 import { CardFirestoreData } from "../firestore";
 import { getAllCards } from "../../firestore/destinytcg";
+import { Logger, LogLevel } from "../../utils";
 
 export class Card 
 {
@@ -29,7 +30,7 @@ export class Card
     {
         if (this._initialised) 
         {
-            console.log("Card collection is already initialised.");
+            Logger.yellow("Card collection is already initialised.", LogLevel.WARN);
             return;
         }
         if (!Set.isInitialised()) 
@@ -40,7 +41,9 @@ export class Card
         {
             throw new Errors.RaritiesNotInitialisedError();
         }
-        console.log("Initialising Card collection...");
+
+        Logger.startSection("Initialising Card Collection");
+
         this._cards.clear();
         const cardsData = await getAllCards();
         cardsData.forEach(cardData => 
@@ -48,8 +51,9 @@ export class Card
             const card = Card.fromFirestore(cardData);
             card.register();
         });
-        console.log(`Initialised Card collection with ${this._cards.size} cards.`);
         this._initialised = true;
+
+        Logger.endSection("Card Collection Initialised");
     }
 
     public static isInitialised(): boolean 

@@ -1,4 +1,5 @@
 import { Card, Set, Rarity } from ".";
+import { Logger, LogLevel } from "../../utils";
 
 export class Manifest 
 {
@@ -13,16 +14,17 @@ export class Manifest
     {
         if (this._initialised) 
         {
-            console.log("Manifest is already initialised.");
+            Logger.yellow("Manifest is already initialised.", LogLevel.WARN);
             return;
         }
-        console.log("Initialising manifest...");
+
+        Logger.startSection("Initialising Manifest");
 
         await Set.initialise();
         await Rarity.initialise();
         await Card.initialise();
-
-        console.log("Manifest initialised.");
         this._initialised = true;
+
+        Logger.endSection("Manifest Initialised");
     }
 }

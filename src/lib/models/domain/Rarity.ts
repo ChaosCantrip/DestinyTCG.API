@@ -1,6 +1,7 @@
 import { RarityNotFoundError, RarityAlreadyRegisteredError } from "../errors";
 import { RarityFirestoreData } from "../firestore";
 import { getAllRarities } from "../../firestore/destinytcg";
+import { Logger, LogLevel } from "../../utils";
 
 export class Rarity 
 {
@@ -20,10 +21,12 @@ export class Rarity
     {
         if (this._initialised) 
         {
-            console.log("Rarity collection is already initialised.");
+            Logger.yellow("Rarity collection is already initialised.", LogLevel.WARN);
             return;
         }
-        console.log("Initialising Rarity collection...");
+
+        Logger.startSection("Initialising Rarity Collection");
+
         this._rarities.clear();
         const raritiesData = await getAllRarities();
         raritiesData.forEach(rarityData => 
@@ -31,8 +34,9 @@ export class Rarity
             const rarity = new Rarity(rarityData.name);
             rarity.register();
         });
-        console.log(`Initialised Rarity collection with ${this._rarities.size} rarities.`);
         this._initialised = true;
+
+        Logger.endSection("Rarity Collection Initialised");
     }
 
     public static isInitialised(): boolean 
