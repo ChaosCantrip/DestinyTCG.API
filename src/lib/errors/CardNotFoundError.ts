@@ -1,4 +1,6 @@
-export class CardNotFoundError extends Error 
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class CardNotFoundError extends DestinyTCGError 
 {
     name: string;
     cardId: string;

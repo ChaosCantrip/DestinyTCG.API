@@ -1,4 +1,6 @@
-export class RarityNotFoundError extends Error 
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class RarityNotFoundError extends DestinyTCGError 
 {
     name: string;
     rarityName: string;

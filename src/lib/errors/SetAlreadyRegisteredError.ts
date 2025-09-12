@@ -1,4 +1,6 @@
-export class SetAlreadyRegisteredError extends Error 
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class SetAlreadyRegisteredError extends DestinyTCGError 
 {
     name: string;
     setId: string;

@@ -1,4 +1,6 @@
-export class CardAlreadyRegisteredError extends Error 
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class CardAlreadyRegisteredError extends DestinyTCGError 
 {
     name: string;
     cardId: string;

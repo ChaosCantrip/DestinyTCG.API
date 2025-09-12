@@ -1,4 +1,6 @@
-export class SetNotFoundError extends Error 
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class SetNotFoundError extends DestinyTCGError 
 {
     name: string;
     setId: string;

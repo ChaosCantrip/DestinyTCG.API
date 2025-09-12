@@ -1,4 +1,6 @@
-export class IncompleteRequestError extends Error
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class IncompleteRequestError extends DestinyTCGError
 {
     missingParts: string[];
 

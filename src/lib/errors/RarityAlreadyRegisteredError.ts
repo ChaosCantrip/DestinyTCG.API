@@ -1,4 +1,6 @@
-export class RarityAlreadyRegisteredError extends Error 
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class RarityAlreadyRegisteredError extends DestinyTCGError 
 {
     name: string;
     rarityName: string;

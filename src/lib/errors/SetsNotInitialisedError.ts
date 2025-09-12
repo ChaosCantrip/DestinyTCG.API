@@ -1,4 +1,6 @@
-export class SetsNotInitialisedError extends Error 
+import { DestinyTCGError } from "./DestinyTCGError";
+
+export class SetsNotInitialisedError extends DestinyTCGError 
 {
     name: string;
 
