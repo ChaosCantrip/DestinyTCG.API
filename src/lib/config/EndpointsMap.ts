@@ -11,5 +11,6 @@ export const EndpointsMap: EndpointDefinition[] = [
     { path: "/cards/getCard", allowed_methods: ["GET"] },
 
     { path: "/auth/refresh", allowed_methods: ["POST"] },
-    { path: "/auth/bungie/start", allowed_methods: ["GET"] }
+    { path: "/auth/bungie/start", allowed_methods: ["GET"] },
+    { path: "/auth/bungie/callback", allowed_methods: ["GET"] }
 ]
