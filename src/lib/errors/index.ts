@@ -15,3 +15,6 @@ export * from "./IncompleteResponseError";
 export * from "./IncompleteRequestError";
 export * from "./InvalidRequestBodyError";
 export * from "./NotYetImplementedError";
+
+export * from "./InvalidEndpointError";
+export * from "./MethodNotAllowedError";
