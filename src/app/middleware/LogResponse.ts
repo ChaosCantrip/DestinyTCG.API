@@ -4,12 +4,12 @@ import chalk from "chalk";
 
 export default function LogResponse(req: Request, res: Response, next: NextFunction)
 {
-    const oldSend = res.send;
-    const oldUrl = req.url;
-    res.send = function (data) 
+    res.on("finish", () =>
     {
-        Logger.log(`Response: ${chalk.green(res.statusCode)} for ${chalk.blue(req.method)} ${chalk.yellow(oldUrl)}`);
-        return oldSend.apply(res, [data]);
-    };
+        const method = chalk.blue(req.method);
+        const url = chalk.cyan(req.url);
+        const status = res.statusCode < 400 ? chalk.green(res.statusCode.toString()) : chalk.red(res.statusCode.toString());
+        Logger.log(`[Response] ${method} ${url} - ${status}`);
+    });
     next();
 }
