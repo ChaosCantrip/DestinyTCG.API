@@ -11,3 +11,4 @@ export * from "./RarityAlreadyRegisteredError";
 
 export * from "./IncompleteResponseError";
 export * from "./IncompleteRequestError";
+export * from "./InvalidRequestBodyError";
