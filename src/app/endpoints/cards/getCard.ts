@@ -1,7 +1,7 @@
 import express from "express";
 import { APIResponse } from "../../../lib/models/responses";
 import { InvalidRequestBodyError, CardNotFoundError } from "../../../lib/errors";
-import { Card, Set } from "../../../lib/models/domain";
+import { Card } from "../../../lib/models/domain";
 
 interface getCardRequest {
     card_id: string;
