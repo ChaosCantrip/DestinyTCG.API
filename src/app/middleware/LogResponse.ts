@@ -11,7 +11,8 @@ export default function LogResponse(req: Request, res: Response, next: NextFunct
         const url = chalk.cyan(oldUrl);
         const status = res.statusCode < 400 ? chalk.green(res.statusCode.toString()) : chalk.red(res.statusCode.toString());
         const message = res.locals.apiResponse?.message ? `"${res.locals.apiResponse.message}"` : "";
-        Logger.log(`[Response] ${method} ${url} - ${status} - ${chalk.cyan(message)}`);
+        const processingTime = chalk.magenta(`${res.locals.apiResponse.meta.processingTime}ms`);
+        Logger.log(`[Response] ${method} ${url} - ${status} - ${chalk.cyan(message)} - ${processingTime}`);
     });
     next();
 }

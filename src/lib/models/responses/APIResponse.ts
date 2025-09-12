@@ -20,6 +20,7 @@ export class APIResponse<T = unknown>
     message: string;
     payload: T | null = null;
     startTime: Date | null = null;
+    meta: Meta | null = null;
 
     constructor(success: success, message: string, payload?: T)
     {
@@ -47,14 +48,16 @@ export class APIResponse<T = unknown>
         const endTime = new Date();
         const processingTime = endTime.getTime() - this.startTime.getTime();
 
+        this.meta = {
+            timestamp: endTime.toISOString(),
+            processingTime
+        };
+
         return {
             success: this.success,
             message: this.message,
             payload: this.payload,
-            meta: {
-                timestamp: endTime.toISOString(),
-                processingTime
-            }
+            meta: this.meta
         };
     }
 }
