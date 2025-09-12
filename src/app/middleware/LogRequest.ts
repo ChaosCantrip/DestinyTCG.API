@@ -6,6 +6,6 @@ export default function LogRequest(req: Request, res: Response, next: NextFuncti
 {
     const method = chalk.blue(req.method);
     const url = chalk.cyan(req.url);
-    Logger.log(`[Request] ${method} ${url}`);
+    Logger.log(`[Request]  ${method} ${url}`);
     next();
 }
