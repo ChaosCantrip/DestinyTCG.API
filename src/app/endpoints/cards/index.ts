@@ -1,7 +1,7 @@
 import express from "express";
-import getCardHandler from "./:cardId";
+import getCardHandler from "./getCard";
 const router = express.Router();
 
-router.use("/:cardId", getCardHandler);
+router.get("/getCard", getCardHandler);
 
 export default router;
