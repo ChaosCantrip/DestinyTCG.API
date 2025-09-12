@@ -4,6 +4,8 @@ import chalk from "chalk";
 
 export default function LogRequest(req: Request, res: Response, next: NextFunction)
 {
-    Logger.log(`Incoming request: ${chalk.blue(req.method)} ${chalk.yellow(req.url)}`);
+    const method = chalk.blue(req.method);
+    const url = chalk.cyan(req.url);
+    Logger.log(`[Request] ${method} ${url}`);
     next();
 }
