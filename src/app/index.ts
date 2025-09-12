@@ -19,6 +19,10 @@ const middlewares: MiddlewareConfig[] = [
     new MiddlewareConfig("LogResponse", Middleware.LogResponse)
 ];
 
+const error_handlers: MiddlewareConfig[] = [
+    new MiddlewareConfig("ErrorHandler", Middleware.ErrorHandler),
+];
+
 const routers: RouterConfig[] = [
     new RouterConfig("/", endpointsRouter, "endpointsRouter")
 ];
@@ -48,6 +52,16 @@ async function initialiseApp()
     });
 
     Logger.endSection("Routers Setup Complete");
+
+    Logger.startSection("Setting up Error Handlers");
+
+    error_handlers.forEach(errorHandlerConfig =>
+    {
+        app.use(errorHandlerConfig.handler);
+        Logger.greenBright(`Error Handler ${errorHandlerConfig.name} configured`);
+    });
+
+    Logger.endSection("Error Handlers Setup Complete");
 
     Logger.endSection("Application Initialised");
 }
