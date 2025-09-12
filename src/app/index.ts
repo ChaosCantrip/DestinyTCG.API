@@ -19,6 +19,7 @@ const middlewares: MiddlewareConfig[] = [
     new MiddlewareConfig("LogRequest", Middleware.LogRequest),
     new MiddlewareConfig("LogResponse", Middleware.LogResponse),
     new MiddlewareConfig("ConvertAPIResponse", Middleware.ConvertAPIResponse),
+    new MiddlewareConfig("HandleIncorrectEndpoints", Middleware.HandleIncorrectEndpoints)
 ];
 
 const error_handlers: MiddlewareConfig[] = [
