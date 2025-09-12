@@ -14,24 +14,24 @@ interface APIResponseData<T> {
     meta: Meta;
 }
 
-export class APIResponse<T>
+export class APIResponse<T = unknown>
 {
-    private _success: boolean | null = null;
-    message: string | null = null;
+    success: success;
+    message: string;
     payload: T | null = null;
-    startTime: Date;
+    startTime: Date | null = null;
 
-    constructor(startTime: Date)
+    constructor(success: success, message: string, payload?: T)
     {
-        this.startTime = startTime;
+        this.success = success;
+        this.message = message;
+        this.payload = payload ?? null;
     }
 
     public toJSON(): APIResponseData<T>
     {
-        const endTime = new Date();
-        const processingTime = endTime.getTime() - this.startTime.getTime();
 
-        if (this._success === null)
+        if (this.success === null)
         {
             throw new IncompleteResponseError("success");
         }
@@ -39,9 +39,16 @@ export class APIResponse<T>
         {
             throw new IncompleteResponseError("message");
         }
+        if (this.startTime === null)
+        {
+            throw new IncompleteResponseError("startTime");
+        }
+
+        const endTime = new Date();
+        const processingTime = endTime.getTime() - this.startTime.getTime();
 
         return {
-            success: this._success ? "success" : "error",
+            success: this.success,
             message: this.message,
             payload: this.payload,
             meta: {

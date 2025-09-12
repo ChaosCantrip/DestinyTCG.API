@@ -15,8 +15,10 @@ const port = process.env.PORT || 3002;
 app.use(express.json());
 
 const middlewares: MiddlewareConfig[] = [
+    new MiddlewareConfig("SetStartTime", Middleware.SetStartTime),
     new MiddlewareConfig("LogRequest", Middleware.LogRequest),
-    new MiddlewareConfig("LogResponse", Middleware.LogResponse)
+    new MiddlewareConfig("LogResponse", Middleware.LogResponse),
+    new MiddlewareConfig("ConvertAPIResponse", Middleware.ConvertAPIResponse),
 ];
 
 const error_handlers: MiddlewareConfig[] = [
