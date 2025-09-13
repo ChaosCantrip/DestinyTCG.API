@@ -18,3 +18,5 @@ export * from "./NotYetImplementedError";
 
 export * from "./InvalidEndpointError";
 export * from "./MethodNotAllowedError";
+
+export * from "./InvalidFirestoreDataError";
